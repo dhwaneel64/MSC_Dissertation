@@ -1,0 +1,39 @@
+# CW/QLIKE bootstrap simulation study, pinned dependencies.
+#
+# Versions are the ones the committed outputs were produced under, recorded
+# from the environment that ran them. They are pinned exactly rather than with
+# minimum bounds because one of them affects the numbers (see statsmodels
+# below), and because a study whose whole point is a reproducible size
+# measurement should not leave its own inputs floating.
+#
+# Requires Python 3.14.0. Earlier 3.x versions will very likely run the code,
+# but the committed outputs were not produced under them and bit-exact
+# reproduction is not claimed outside 3.14.0.
+#
+# Install with:  python -m pip install -r requirements.txt
+
+numpy==2.3.5
+# Generators, SeedSequence spawning and all array work. The reproduction
+# guarantee rests on SeedSequence spawn behaviour being positional and stable,
+# which has held across the 2.x line but is pinned rather than assumed.
+
+scipy==1.17.0
+# scipy.stats for the Student-t and chi-square draws in the DGP, the normal
+# quantiles behind the standard test, and the QQ-plot reference quantiles.
+
+statsmodels==0.14.6
+# ARIMA fitting inside the model-based null-imposed bootstrap. This pin is
+# load-bearing, not housekeeping. The size run at t_oos=220 hit one ARMA(1,1)
+# non-convergence in 2000 replications and routed that replication down the
+# AR(1) fallback branch. Whether that branch fires depends on the optimiser, so
+# a different statsmodels version can converge where this one did not, or fail
+# where it succeeded, and the reported rates would move. Seed equality alone
+# does not pin the result; the seed and this version together do.
+
+pandas==2.3.3
+# Reporting layer only (results_table.py), where a DataFrame carries each table
+# to CSV. The simulation modules never import it.
+
+matplotlib==3.10.7
+# Diagnostic QQ figure only, written through the Agg file backend. The
+# committed PNG records this same version in its Software text chunk.

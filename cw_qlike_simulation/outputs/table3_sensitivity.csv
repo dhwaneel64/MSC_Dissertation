@@ -1,0 +1,7 @@
+axis,setting,R,rej@5%,rej@10%,MC se 5/10%,mean draw std,difference se vs reference 5/10%
+generator,"ARMA(1,1), validated",1000,0.055,0.109,0.007/0.010,1.3621490823656632,reference
+generator,"AR(1), mis-specified",1000,0.074,0.14,0.008/0.011,1.2807310030161652,0.011/0.015
+bootstrap draws,B=299,1000,0.055,0.109,0.007/0.010,1.3621490823656632,reference
+bootstrap draws,B=999,1000,0.057,0.117,0.007/0.010,1.3599897397467562,0.010/0.014
+generator residuals,iid,1000,0.055,0.109,0.007/0.010,1.3621490823656632,reference
+generator residuals,blocks of 3,1000,0.044,0.11,0.006/0.010,1.3631944597017918,0.010/0.014

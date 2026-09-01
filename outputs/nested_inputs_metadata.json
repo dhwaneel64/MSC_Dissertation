@@ -1,0 +1,202 @@
+{
+  "written_utc": "2026-08-03T15:54:33+00:00",
+  "snapshot": {
+    "locked_snapshot_date": "2026-06-17",
+    "file": "raw_snapshot_2026-06-17.parquet",
+    "sha256": "7323f72f8dc3cb0e3d912c3e6bc111e81904499dc9d60cb627e0bfbae0c215d6"
+  },
+  "oos": {
+    "n_obs": 253,
+    "first_date": "2005-01-03",
+    "last_date": "2026-05-01",
+    "initial_train_end": "2004-12-01"
+  },
+  "models": {
+    "constant": {
+      "feature_cols": [],
+      "n_obs": 253,
+      "n_valid": 223,
+      "n_guard_excluded": 29,
+      "n_nan_tail_excluded": 1,
+      "qlike_full_valid": 1.4623838700790668,
+      "file": "nested_inputs_constant.npz",
+      "sha256": "007aacbeb91b14152fe3afa3db4a7e84f1e70c32a4784b6e49dc58d4b2d914be"
+    },
+    "har": {
+      "feature_cols": [
+        "vrp_h1m",
+        "vrp_h3m",
+        "vrp_h6m"
+      ],
+      "n_obs": 253,
+      "n_valid": 251,
+      "n_guard_excluded": 1,
+      "n_nan_tail_excluded": 1,
+      "qlike_full_valid": 0.4359237384145405,
+      "file": "nested_inputs_har.npz",
+      "sha256": "41f60dd6a905f8f0c0cf1cce8169f3e68d60bc53eb6e4f9616f4490b67b28cf8"
+    },
+    "extended_ols": {
+      "feature_cols": [
+        "vix_level",
+        "cboe_skew",
+        "vrp_h1m",
+        "vrp_h3m",
+        "vrp_h6m",
+        "realised_skew_21d"
+      ],
+      "n_obs": 253,
+      "n_valid": 249,
+      "n_guard_excluded": 3,
+      "n_nan_tail_excluded": 1,
+      "qlike_full_valid": 2.3750245499406772,
+      "file": "nested_inputs_extended_ols.npz",
+      "sha256": "465af253222ca91ec3ba772b8c2bb87e5d4b15fa80a84921774409b5ea8a425a"
+    },
+    "regime_switching": {
+      "feature_cols": [
+        "vix_level",
+        "cboe_skew",
+        "vrp_h1m",
+        "vrp_h3m",
+        "vrp_h6m",
+        "realised_skew_21d",
+        "regime"
+      ],
+      "n_obs": 253,
+      "n_valid": 247,
+      "n_guard_excluded": 5,
+      "n_nan_tail_excluded": 1,
+      "qlike_full_valid": 0.8148566168669144,
+      "file": "nested_inputs_regime_switching.npz",
+      "sha256": "2bfd165846c4dfc8e40fe323cca2829c7dc04f7042e6ff4c0d069f8de5fe9379"
+    }
+  },
+  "pairs": {
+    "constant__har": {
+      "smaller": "constant",
+      "larger": "har",
+      "n_paired": 222,
+      "qlike_paired": {
+        "constant": 1.4669378068612118,
+        "har": 0.44340147769846966
+      },
+      "cw_statistic": 3.4657879209851186,
+      "cw_p_value_normal_reference": 0.0002643400619021099,
+      "audit_cw_statistic": 3.465788
+    },
+    "har__extended_ols": {
+      "smaller": "har",
+      "larger": "extended_ols",
+      "n_paired": 249,
+      "qlike_paired": {
+        "har": 0.4193710686392884,
+        "extended_ols": 2.3750245499406772
+      },
+      "cw_statistic": -0.9821244516332049,
+      "cw_p_value_normal_reference": 0.8369807296596848,
+      "audit_cw_statistic": -0.982124
+    },
+    "extended_ols__regime_switching": {
+      "smaller": "extended_ols",
+      "larger": "regime_switching",
+      "n_paired": 246,
+      "qlike_paired": {
+        "extended_ols": 0.40856891446303345,
+        "regime_switching": 0.8170338805037632
+      },
+      "cw_statistic": 1.2872115785981424,
+      "cw_p_value_normal_reference": 0.09901027631305342,
+      "audit_cw_statistic": 1.287212
+    }
+  },
+  "combined_file": {
+    "name": "nested_inputs_combined.npz",
+    "sha256": "38df3daafe8dd3fe8a70ecd73596921c5ed7efef9f7d4ba493748b64893a32cd"
+  },
+  "config": {
+    "ANNUALISATION_FACTOR_DAILY": 252,
+    "BOOTSTRAP_BLOCK_LENGTH_EXPONENT": 0.3333333333333333,
+    "BOOTSTRAP_REPLICATIONS": 9999,
+    "BOOTSTRAP_SEED": 20260617,
+    "CIRCLE3A_CRASH_WINDOWS": [
+      [
+        "2008-09_2009-03",
+        "2008-09-01",
+        "2009-03-31"
+      ],
+      [
+        "2018-02",
+        "2018-02-01",
+        "2018-02-28"
+      ],
+      [
+        "2020-02_2020-04",
+        "2020-02-01",
+        "2020-04-30"
+      ]
+    ],
+    "CIRCLE3A_TAIL_VIX_THRESHOLD": 40,
+    "CIRCLE3A_WORST_ROLL_MONTHS": 3,
+    "COMPARISON_ALPHA": 0.05,
+    "COST_HAIRCUT_BASE": 0.01,
+    "COST_STRESS_MULTIPLIER": 2,
+    "DATA_DIR": "D:\\AI Warwick\\Dissertation\\implementation\\data",
+    "DATA_START_DATE": "1993-01-29",
+    "DM_DEFAULT_HORIZON": 1,
+    "HAR_LAGS_MONTHS": [
+      1,
+      3,
+      6
+    ],
+    "HAR_RV_HORIZON_D": 1,
+    "HAR_RV_HORIZON_M": 22,
+    "HAR_RV_HORIZON_W": 5,
+    "INITIAL_TRAINING_YEARS_FULL": 12,
+    "LOCKED_SNAPSHOT_DATE": "2026-06-17",
+    "LOW_POWER_MIN_N": 50,
+    "MONTHLY_RESAMPLE_RULE": "MS",
+    "MONTHS_PER_YEAR": 12,
+    "NW_HAC_EXPONENT": 0.2222222222222222,
+    "NW_HAC_MULTIPLIER": 4.0,
+    "PROJECT_ROOT": "D:\\AI Warwick\\Dissertation\\implementation",
+    "REGIME_LABELS": [
+      "calm",
+      "normal",
+      "stressed"
+    ],
+    "REGIME_MIN_TRAIN_MULTIPLIER": 2,
+    "REGIME_STRESSED_LABEL": "stressed",
+    "RV_WINDOW": 21,
+    "SNAPSHOT_PREFIX": "raw_snapshot_",
+    "TICKER_SKEW": "^SKEW",
+    "TICKER_SPY": "SPY",
+    "TICKER_VIX": "^VIX",
+    "VIX_CALM_UPPER": 15,
+    "VIX_STRESSED_LOWER": 25,
+    "VIX_VARIANCE_SCALE": 10000,
+    "XGBOOST_N_JOBS": 1,
+    "XGBOOST_SEED": 20260623,
+    "XGB_CV_FOLDS": 4,
+    "XGB_CV_MIN_TRAIN_MONTHS": 60,
+    "XGB_LEARNING_RATE_GRID": [
+      0.01,
+      0.05,
+      0.1
+    ],
+    "XGB_MAX_DEPTH_GRID": [
+      2,
+      3,
+      4
+    ],
+    "XGB_MIN_CHILD_WEIGHT_GRID": [
+      1,
+      5
+    ],
+    "XGB_N_ESTIMATORS_GRID": [
+      100,
+      300,
+      500
+    ]
+  }
+}
